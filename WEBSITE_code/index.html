@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P-tracker</title>
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="stylesheets/nav.css">
+</head>
+<body>
+  <div class="container">
+    <h1>P-tracker</h1>
+    <h1 class="highlighted">Current Air quality around</h1>
+    <div class="table-wrapper">
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>PM2.5 (µg/m³)</th>
+            <th>PM10 (µg/m³)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="timestamp">-</td>
+            <td id="pm25">-</td>
+            <td id="pm10">-</td>
+          </tr>
+        </tbody>
+        <table id="data-table">
+          <thead>
+            <tr>
+              <th>Coordinates (lat, long)</th>
+              <th>Device Temp(°C)</th>
+              <th>Real Temp (°C)</th>
+              <th>Humidity (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="coordinates">-</td>
+              <td id="device_temp">-</td>
+              <td id="real_temp">-</td>
+              <td id="humidity">-</td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+
+    <!-- PM Status Section -->
+<div id="pm-status" class="pm-status">
+  Current status of Particulate Matter: PM2.5 = Safe, PM10 = Safe
+</div>
+
+    <h1 class="highlighted">Air quality tracking</h1>
+    <div class="tracking-block">
+      <button id="start-btn">Start</button>
+      <button id="stop-btn" disabled>Stop</button>
+      <div id="timer">00:00:00</div>
+      <div id="average-quality">
+        <p id="avg-pm25">Average PM2.5: -</p>
+        <p id="avg-pm10">Average PM10: -</p>
+      </div>
+    </div>
+
+    <div id="map"></div>
+
+    <button id="toggle-history">Show History</button>
+    <div class="history">
+      <div class="table-wrapper">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>PM2.5 (µg/m³)</th>
+              <th>PM10 (µg/m³)</th>
+              <th>Coordinates (lat, long)</th>
+              <th>Temperature (°C)</th>
+            </tr>
+          </thead>
+          <tbody id="history-body">
+            <!-- History data will be appended here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Show All Data Section -->
+    <button id="toggle-api-data" class="centered-button">Show All Data</button>
+    <div class="api-data" style="display: none;">
+      <div class="table-wrapper" style="max-height: 400px; overflow-y: scroll;">
+        <table class="api-data-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>PM2.5 (µg/m³)</th>
+              <th>PM10 (µg/m³)</th>
+              <th>Coordinates (lat, long)</th>
+              <th>Temperature (°C)</th>
+              <th>Humidity (%)</th>
+            </tr>
+          </thead>
+          <tbody id="api-data-body">
+            <!-- API data will be appended here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/map.js"></script>
+</body>
+</html>
