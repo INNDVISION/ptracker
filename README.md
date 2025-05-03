@@ -1,2 +1,5 @@
-# ptracker
-Air Quality Device P-tracker
+# P-tracker
+# Air Quality Device P-tracker
+
+**Low-cost air quality device**
+ 
